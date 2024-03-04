@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="wwwroot/css/index.css">
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    
+    
+    
+    <title>Document</title>
+</head>
+<body>
+    <div class="contenedor-principal sombreado">
+        <h1 class="titulo">Facturación DIMAG</h1>
+        <div class="header">
+            <div class="header__logo">
+                <img src="/assets/img/Logo-Guiio.png" alt="">
+                <div class="nombre-empresa">
+                    <h2>DIMAG<span>Uniformes</span></h2>
+                    <p>Nit: 901.278.722-1</p>
+                </div>
+                <h2 class="num-factura">Factura&nbsp;&nbsp; 
+                   <span>N°&nbsp;</span><span>001</span>
+                </h2>
+            </div>
+        </div>
+        <div class="header__fechas">
+            <div class="dato">
+                <label for="">Fecha pedido</label>
+                <input type="date" id="fecha-pedido">
+            </div>
+            <div class="dato">
+                <label for="">Fecha entrega</label>
+                <input type="date" id="fecha-entrega" >
+            </div>
+            
+        </div>
+        <div class="datos-cliente sombreado">
+            <h2 class="titulo-seccion">
+                Datos cliente
+            </h2>
+            <div class="buscar-cliente">
+                <p class="error-cliente" id="errorCliente"></p>
+                <div class="dato">
+                    <label for="">Buscar cliente:</label>
+                    <input type="text" id="buscar-cliente" placeholder="Nombre">
+                    <button type="button" onclick="ObtenerCliente()"></button>
+                </div>
+            </div>
+            <div class="datos__header">
+                <div class="header__datos">
+                    <div class="dato">
+                        <label for="">Nombre:</label>
+                        <input type="text" id="nombre" placeholder="Nombre">
+                    </div>
+                    <div class="dato">
+                        <label for="">Dirección:</label>
+                        <input type="text" id="" placeholder="Dirección">
+                    </div>
+                    <div class="dato">
+                        <label for="">Identificación:</label>
+                        <input type="text" placeholder="Nombre">
+                    </div>
+                    <div class="dato">
+                        <label for="">Telefono:</label>
+                        <input type="text" placeholder="Dirección">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form id="formularioPedido"> 
+            <div class="datos-producto sombreado">
+                <h2 class="titulo-seccion">Detalle del producto</h2>
+                <div class="definicion-producto">
+                    <div class="dato">
+                        <label for="">Cantidad</label>
+                        <input type="number" id="cantidad" oninput="activarTipoPrenda()">
+                    </div>
+                    <div class="dato desactivado" id="tipoPrenda">
+                        <label for="">Producto</label>
+                        <select class="tipo-prenda" id="tipo-prenda" onchange="activarModeloUniforme()">
+                            <option value="">Ninguno</option>
+                        </select>
+                    </div>
+                    <div class="dato desactivado" id="tipoBlusa">
+                        <label for="">Módelo blusa</label>
+                        <select class="tipo-uniforme" id="tipo-blusa">
+                            <option value="">Ninguno</option>
+                        </select>
+                    </div>
+                    <div class="dato desactivado" id="tipoPantalon">
+                        <label for="">Módelo pantalon</label>
+                        <select class="modelo-pantalon" id="modelo-pantalon">
+                            <option value="">Ninguno</option>
+                            
+                        </select>
+                    </div>
+                    <div class="dato desactivado" id="div-color">
+                        <label for="">Color</label>
+                        <select class="color" id="colores" name="color">
+                            <option value="">Ninguno</option>
+                        </select>
+                    </div>
+                    <div class="dato desactivado" id="tallaPantalon">
+                        <label for="">Talla pantalon</label>
+                        <select class="talla-pantalon" id="talla-pantalon">
+                            <option value="">Ninguno</option>
+                            <option>XS</option>
+                            <option>S</option>
+                            <option>M</option>
+                            <option>L</option>
+                            <option>XL</option>
+                            <option>XXL</option>
+                        </select>
+                    </div>
+                    <div class="dato desactivado" id="tallaBlusa">
+                        <label for="">Talla blusa</label>
+                        <select class="talla-blusa" id="talla-blusa">
+                            <option value="">Ninguno</option>
+                            <option>XS</option>
+                            <option>S</option>
+                            <option>M</option>
+                            <option>L</option>
+                            <option>XL</option>
+                            <option>XXL</option>
+                        </select>
+                    </div>
+                    <div class="dato desactivado" id="modeloGorro">
+                        <label for="">Modelo Gorro</label>
+                        <select class="modelo-gorro" id="modelo-gorro">
+                            <option value="">Ninguno</option>
+                        </select>
+                    </div>
+                    <div class="dato desactivado" id="modeloDelantal">
+                        <label for="">Modelo Delantal</label>
+                        <select class="modelo-delantal" id="modelo-delantal">
+                            <option value="">Ninguno</option>
+                        </select>
+                    </div>
+                    
+                </div>
+                <div class="observacion-producto">
+                    <div class="dato">
+                        <label for="">Observaciones</label>
+                        <input type="text" id="observaciones">
+                    </div>
+                    <button  type="button" onclick="agregarProducto()">Agregar producto</button>
+                </div>
+                
+            </div>
+            <div class="detalle-pedido">
+                <table class="sombreado" id="tabla-datos">
+                    <thead>
+                        <tr>
+                            <th>Cantidad</th>
+                            <th>Descripción</th>
+                            <th>Vr. Unitario</th>
+                            <th>Valor Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>Total a pagar</td>
+                            <td>$ 0</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+        </form>
+        
+    </div>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
