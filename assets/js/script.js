@@ -24,6 +24,7 @@ function ObtnerTextoSelect(id){
 function agregarProducto() {
     var cantidad = document.getElementById('cantidad').value;
     var tipoPrenda = ObtnerTextoSelect('tipo-prenda');
+    var tipoUniforme = ObtnerTextoSelect('tipo-uniforme')
     var tipoBlusa = ObtnerTextoSelect('tipo-blusa');
     var modeloPantalon = ObtnerTextoSelect('modelo-pantalon');
     var tallaPantalon= ObtnerTextoSelect('talla-pantalon');
@@ -38,10 +39,10 @@ function agregarProducto() {
     }else if(tipoPrenda === "Gorro"){
         descripcion = tipoPrenda + ' ' + modeloGorro + ' color ' + color + ' ' + observaciones;
     }else if(tipoPrenda  === "Uniforme"){
-        descripcion = tipoPrenda + ': Blusa ' + tipoBlusa + ' talla ' + tallaBlusa + 
-        ', Pantalon ' + modeloPantalon + ' talla ' + tallaPantalon + ' color ' + color + ' ' + observaciones;
+        descripcion = tipoPrenda +': '+ tipoUniforme + ', Blusa talla ' + tallaBlusa + 
+        ', Pantalon talla ' + tallaPantalon + ' color ' + color + ' ' + observaciones;
     }else if(tipoPrenda === "Blusa"){
-        descripcion = tipoPrenda + ' ' + tipoUniforme + ' talla ' + tallaBlusa + ' color ' + color + ' ' + observaciones;
+        descripcion = tipoPrenda + ' ' + tipoBlusa + ' talla ' + tallaBlusa + ' color ' + color + ' ' + observaciones;
     }else if(tipoPrenda === "Pantalon"){
         descripcion = tipoPrenda + ' ' + modeloPantalon + ' talla ' + tallaPantalon +' color ' + color + ' ' + observaciones;
     }
@@ -58,7 +59,7 @@ function agregarProducto() {
     celdaDescripcion.innerHTML = descripcion;
     celdaValorUnitario.innerHTML = '$ 35.000';
     celdaValorTotal.innerHTML = '$ 70.000';
-
+    cantidad.value = 0;
     
 }
 
@@ -89,16 +90,18 @@ function activarModeloUniforme(){
     var tallaBlusa = document.getElementById("tallaBlusa");
     var modeloGorro = document.getElementById("modeloGorro");
     var modeloDelantal = document.getElementById("modeloDelantal");
+    var modeloUniforme = document.getElementById("tipoUniforme");
 
     if(tipoPrenda  === "1") {
+        modeloUniforme.classList.remove("desactivado");
         modeloGorro.classList.add("desactivado");
-        tipoBlusa.classList.remove("desactivado");    
-        tipoPantalon.classList.remove("desactivado"); 
+        tipoBlusa.classList.add("desactivado");    
+        tipoPantalon.classList.add("desactivado"); 
         color.classList.remove("desactivado"); 
         tallaPantalon.classList.remove("desactivado"); 
         tallaBlusa.classList.remove("desactivado");
         modeloDelantal.classList.add("desactivado"); 
-    }else if(tipoPrenda === "5"){
+    }else if(tipoPrenda === "4"){
         tipoBlusa.classList.add("desactivado");    
         tipoPantalon.classList.add("desactivado");
         tallaPantalon.classList.add("desactivado"); 
@@ -106,7 +109,7 @@ function activarModeloUniforme(){
         modeloGorro.classList.remove("desactivado"); 
         color.classList.remove("desactivado"); 
         modeloDelantal.classList.add("desactivado"); 
-    }else if(tipoPrenda === "4"){
+    }else if(tipoPrenda === "5"){
         tipoBlusa.classList.add("desactivado");    
         tipoPantalon.classList.add("desactivado");
         tallaPantalon.classList.add("desactivado"); 
@@ -114,7 +117,6 @@ function activarModeloUniforme(){
         modeloGorro.classList.add("desactivado"); 
         color.classList.remove("desactivado"); 
         modeloDelantal.classList.remove("desactivado"); 
-        modelo
     }
     else if(tipoPrenda === "2"){
         tipoBlusa.classList.remove("desactivado");    
@@ -135,13 +137,14 @@ function activarModeloUniforme(){
     }
 }
 
-const apiUrl = 'https://localhost:7285/api/';
+const apiUrl = 'http://localhost:5026/api/';
 const listaColores = 'Colores/ListarColores';
-const ListaProductos = 'Producto/ListarProductos';
-const ListarPantalones = 'ModeloPantalon/ListarPantalones';
-const ListarBlusas = 'ModeloBlusa/ListarBlusas';
+const ListaProductos = 'Productos/ListarProductos';
+const ListarPantalones = 'Pantalon/ListarPantalones';
+const ListarBlusas = 'Blusa/ListarBlusas';
 const ListarDelantal = 'Delantal/ListarDelantales';
-const ListarGorros = 'Gorros/ListarGorros';
+const ListarGorros = 'Gorro/ListarGorros';
+const ListarUniformes = 'Uniformes/ListarUniformes';
 
 
 function datosSelect(datos, idSelect, idItem, nombreItem){
@@ -177,11 +180,12 @@ function obtenerDatos(urlComplemento, idSelect, idItem, nombreItem){
       
 }
 obtenerDatos(listaColores, 'colores', 'idColor', 'color');
-obtenerDatos(ListaProductos, 'tipo-prenda', 'idProducto', 'nombreProducto');
-obtenerDatos(ListarPantalones, 'modelo-pantalon', 'idModeloPantalon', 'nombre');
-obtenerDatos(ListarBlusas, 'tipo-blusa', 'idModeloBlusa', 'nombre');
-obtenerDatos(ListarDelantal, 'modelo-delantal', 'idModeloDelantal', 'nombre');
-obtenerDatos(ListarGorros, 'modelo-gorro', 'idModeloGorro', 'nombre');
+obtenerDatos(ListaProductos, 'tipo-prenda', 'idTipoProducto', 'producto');
+obtenerDatos(ListarPantalones, 'modelo-pantalon', 'idPantalon', 'nombrePantalon');
+obtenerDatos(ListarBlusas, 'tipo-blusa', 'idBlusa', 'nombreBlusa');
+obtenerDatos(ListarDelantal, 'modelo-delantal', 'idDelantal', 'nombreDelantal');
+obtenerDatos(ListarGorros, 'modelo-gorro', 'idGorro', 'nombreGorro');
+obtenerDatos(ListarUniformes, 'tipo-uniforme', 'idUniforme', 'nombreUniforme');
 
 
 //Función para obtener el cliente por el nombre
