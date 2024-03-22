@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="wwwroot/css/index.css">
+    <link rel="stylesheet" href="/assets/css/index.css">
 
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +25,7 @@
                     <p>Nit: 901.278.722-1</p>
                 </div>
                 <h2 class="num-factura">Factura&nbsp;&nbsp; 
-                   <span>N°&nbsp;</span><span>001</span>
+                   <span>N°&nbsp;</span><span></span>
                 </h2>
             </div>
         </div>
@@ -37,41 +37,52 @@
             <div class="dato">
                 <label for="">Fecha entrega</label>
                 <input type="date" id="fecha-entrega" >
-            </div>
+            </div>           
             
         </div>
         <div class="datos-cliente sombreado">
             <h2 class="titulo-seccion">
                 Datos cliente
             </h2>
+            <p class="estado-registro" id="estado-registro"></p>
             <div class="buscar-cliente">
                 <p class="error-cliente" id="errorCliente"></p>
                 <div class="dato">
                     <label for="">Buscar cliente:</label>
-                    <input type="text" id="buscar-cliente" placeholder="Nombre">
+                    <input type="number" id="buscar-cliente" placeholder="Ingrese el numero de celular del cliente">
                     <button type="button" onclick="ObtenerCliente()"></button>
                 </div>
             </div>
-            <div class="datos__header">
+            <form class="datos__header">
                 <div class="header__datos">
                     <div class="dato">
-                        <label for="">Nombre:</label>
-                        <input type="text" id="nombre" placeholder="Nombre">
-                    </div>
-                    <div class="dato">
-                        <label for="">Dirección:</label>
-                        <input type="text" id="" placeholder="Dirección">
+                        <label for="">Tipo Identificación:</label>
+                        <select class="tipo-identificacion" id="tipo-identificacion" >
+                        </select>
                     </div>
                     <div class="dato">
                         <label for="">Identificación:</label>
-                        <input type="text" placeholder="Nombre">
+                        <input class="identificacion desactivado" type="text" id="identificacion" placeholder="Identificación" required>
+                    </div>
+                    <div class="dato">
+                        <label for="">Nombre:</label>
+                        <input type="text" id="nombre" placeholder="Nombre" required>
+                    </div>
+                    <div class="dato">
+                        <label for="">Dirección:</label>
+                        <input type="text" id="direccion" placeholder="Dirección">
                     </div>
                     <div class="dato">
                         <label for="">Telefono:</label>
-                        <input type="text" placeholder="Dirección">
+                        <input type="number" id="telefono" placeholder="Telefono" required>
+                    </div>
+                    <div class="dato">
+                        <label for="">Correo:</label>
+                        <input type="text" id="correo" placeholder="Correo">
                     </div>
                 </div>
-            </div>
+                <button class="boton-primario" type="button" onclick="GuardarCliente()">Agregar Cliente</button>
+            </form>
         </div>
         <form id="formularioPedido"> 
             <div class="datos-producto sombreado">
@@ -90,19 +101,19 @@
                     <div class="dato desactivado" id="tipoUniforme">
                         <label for="">Módelo Uniforme</label>
                         <select class="tipo-uniforme" id="tipo-uniforme">
-                            <option value="">Ninguno</option>
+                            <option value="null">Ninguno</option>
                         </select>
                     </div>
                     <div class="dato desactivado" id="tipoBlusa">
                         <label for="">Módelo blusa</label>
                         <select class="tipo-uniforme" id="tipo-blusa">
-                            <option value="">Ninguno</option>
+                            <option value="null">Ninguno</option>
                         </select>
                     </div>
                     <div class="dato desactivado" id="tipoPantalon">
                         <label for="">Módelo pantalon</label>
                         <select class="modelo-pantalon" id="modelo-pantalon">
-                            <option value="">Ninguno</option>
+                            <option value="null">Ninguno</option>
                             
                         </select>
                     </div>
@@ -115,37 +126,43 @@
                     <div class="dato desactivado" id="tallaPantalon">
                         <label for="">Talla pantalon</label>
                         <select class="talla-pantalon" id="talla-pantalon">
-                            <option value="">Ninguno</option>
-                            <option>XS</option>
-                            <option>S</option>
-                            <option>M</option>
-                            <option>L</option>
-                            <option>XL</option>
-                            <option>XXL</option>
+                            <option value="null">Ninguno</option>
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
                         </select>
                     </div>
                     <div class="dato desactivado" id="tallaBlusa">
                         <label for="">Talla blusa</label>
                         <select class="talla-blusa" id="talla-blusa">
-                            <option value="">Ninguno</option>
-                            <option>XS</option>
-                            <option>S</option>
-                            <option>M</option>
-                            <option>L</option>
-                            <option>XL</option>
-                            <option>XXL</option>
+                            <option value="null">Ninguno</option>
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+                    <div class="dato desactivado" id="generoUniforme">
+                        <label for="">Genero Uniforme</label>
+                        <select class="genero-uniforme" id="genero-uniforme">
+                            <option value="null">Ninguno</option>
                         </select>
                     </div>
                     <div class="dato desactivado" id="modeloGorro">
                         <label for="">Modelo Gorro</label>
                         <select class="modelo-gorro" id="modelo-gorro">
-                            <option value="">Ninguno</option>
+                            <option value="null">Ninguno</option>
                         </select>
                     </div>
                     <div class="dato desactivado" id="modeloDelantal">
                         <label for="">Modelo Delantal</label>
                         <select class="modelo-delantal" id="modelo-delantal">
-                            <option value="">Ninguno</option>
+                            <option value="null">Ninguno</option>
                         </select>
                     </div>
                     
@@ -155,7 +172,7 @@
                         <label for="">Observaciones</label>
                         <input type="text" id="observaciones">
                     </div>
-                    <button  type="button" onclick="agregarProducto()">Agregar producto</button>
+                    <button class="boton-primario" type="button" onclick="agregarProducto()">Agregar producto</button>
                 </div>
                 
             </div>

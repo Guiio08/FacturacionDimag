@@ -19,6 +19,20 @@
     margin: 10px 0;
 }
 
+.boton-primario{
+    background: $azul-2;
+    font: 700 18px/22px $fuente-roboto;
+    color: $blanco;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    white-space: nowrap;
+    &:hover{
+        background: $negro;
+        cursor: pointer;
+    }
+}
+
 .dato{
     display: flex;
     flex-direction: column;
@@ -47,6 +61,11 @@
         &:hover{
             cursor: pointer;
             border-bottom: 3px solid $azul-primario;
+        }
+    }
+    .identificacion{
+        &.desactivado{
+            cursor: not-allowed;
         }
     }
 }
@@ -128,9 +147,25 @@
         margin-top: 20px;
         .datos__header{
             gap: 20px;
-            display: grid;
             grid-template-columns: repeat(6, 1fr);
             padding-bottom: 30px;
+            display: none;
+            &.inhabilitado{
+                display: grid;
+                .dato{
+                    input{
+                        cursor: not-allowed;
+                        border-bottom: 3px solid $gris1;
+                    }
+                    select{
+                        cursor: not-allowed;
+                        border-bottom: 3px solid $gris1;
+                    }
+                }
+            }
+            &.habilitado{
+                display: grid;
+            }
             .header__datos{
                 grid-column: 1/7;
                 display: grid;
@@ -141,9 +176,23 @@
         .buscar-cliente{
             margin-bottom: 40px;
             .error-cliente{
-                height: 22px;
+                height: 20px;
                 color: $rojo;
-                font: 700 18px/22px $fuente-roboto;
+                font: 400 13px/22px $fuente-roboto;
+                &.registroExitoso{
+                    color: $verde;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    &::before{
+                        content: '';
+                        display: block;
+                        width: 15px;
+                        height: 15px;
+                        background-image: url('/assets/img/check-circle.svg');
+                        filter: invert(63%) sepia(99%) saturate(253%) hue-rotate(71deg) brightness(89%) contrast(95%);
+                    }
+                }
             }
             .dato{
                 grid-template-columns: auto 50px;
@@ -158,6 +207,7 @@
                     border-radius: 4px 0 0 4px;
                     height: 40px;
                 }
+                
                 button{
                     width: 100%;
                     height: 100%;
@@ -203,19 +253,6 @@
             gap: 20px;
             .dato{
                 max-width: 100%;
-            }
-            button{
-                background: $azul-2;
-                font: 700 18px/22px $fuente-roboto;
-                color: $blanco;
-                border: none;
-                padding: 8px 16px;
-                border-radius: 8px;
-                white-space: nowrap;
-                &:hover{
-                    background: $negro;
-                    cursor: pointer;
-                }
             }
         }
     }
